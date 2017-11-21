@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {fetchCategories, fetchPostsByCategory} from '../actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchCategories, fetchPostsByCategory } from '../actions';
 import Header from '../components/Header';
 import Post from '../components/Post';
 
 class CategoryPost extends Component {
   componentDidMount() {
-    const {match} = this.props;
+    const { match } = this.props;
     const Routecategory =
       match && match.params && match.params.category
         ? match.params.category
@@ -17,7 +17,7 @@ class CategoryPost extends Component {
     this.props.fetchCategories();
   }
   componentWillReceiveProps(nextProps) {
-    const {location, match: {params}} = nextProps;
+    const { location, match: { params } } = nextProps;
 
     if (location !== this.props.location) {
       this.props.fetchPostsByCategory(params.category);
@@ -25,13 +25,13 @@ class CategoryPost extends Component {
   }
 
   render() {
-    const {posts} = this.props.posts;
+    const { posts } = this.props.posts;
     return (
       <div>
         {Object.keys(this.props.categories).length !== 0 && (
           <Header {...this.props} />
         )}
-        {posts && <Post posts={posts} />}
+        {posts && <Post posts={posts} iscategory={true} />}
       </div>
     );
   }

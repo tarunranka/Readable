@@ -15,6 +15,7 @@ export const FETCH_COMMENT = 'fetch_comment';
 export const POST_VOTE = 'post_vote';
 export const FETCH_POST_BY_TIMESTAMP = 'fetch_post_by_timestamp';
 export const FETCH_POST_BY_VOTE = 'fetch_post_by_vote';
+export const FETCH_POST_VOTE = 'fetch_post_vote';
 
 const ROOT_URL = 'http://localhost:3001';
 
@@ -185,6 +186,16 @@ export function postVote(id, values, callback) {
     .then(data => callback(data));
   return {
     type: POST_VOTE,
+    payload: id
+  };
+}
+
+export function fetchPostVote(id, values, callback) {
+  const request = axios
+    .put(`${ROOT_URL}/posts/${id}`, values, { headers })
+    .then(data => callback(data));
+  return {
+    type: FETCH_POST_VOTE,
     payload: id
   };
 }
