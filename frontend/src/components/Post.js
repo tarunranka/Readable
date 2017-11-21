@@ -87,7 +87,9 @@ class Post extends Component {
                       </button>
                     </div>
                   </div>
-                  <Link to={`/post/${post.id}`}>Read more</Link>
+                  <Link to={`/post/${post.category}/${post.id}`}>
+                    Read more
+                  </Link>
                 </div>
               ))}
           </div>
